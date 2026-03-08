@@ -934,7 +934,8 @@
             'ولا كلمه لاعبين': { name: 'ولا كلمة (لاعبين)', img: 'ولا كلمه لاعبين.jpg' },
             'كرة قدم عالمية': { name: 'كرة قدم عالمية', img: 'كرة قدم عالمية.jpg' },
             'مسيرة اللاعب': { name: 'مسيرة اللاعب', img: 'مسيرة اللاعب.jpg' },
-            'خمن اللاعب': { name: 'خمن اللاعب', img: 'خمن اللاعب.jpg' }
+            'خمن اللاعب': { name: 'خمن اللاعب', img: 'خمن اللاعب.jpg' },
+            'رتب الحروف': { name: 'رتب الحروف', img: 'حروف.jpg' }
         };
 
         // Inject JS files to load questions
@@ -1135,6 +1136,17 @@
                     '  </div>' +
                     '</div>';
                 // نخفي الإجابة عشان محدش يشوفها على الشاشة
+                document.getElementById('q-answer').style.display = 'none';
+            } else if (catData && catData["__type__"] === "scramble") {
+                // Scramble the letters of the answer
+                let word = qData.answer;
+                let letters = word.split('').filter(char => char !== ' '); // Remove spaces if any
+                // Fisher-Yates shuffle
+                for (let i = letters.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [letters[i], letters[j]] = [letters[j], letters[i]];
+                }
+                document.getElementById('q-text').innerHTML = `<div style="font-size: 5vw; letter-spacing: 15px; font-weight: 900; color: #f97316;">${letters.join(' ')}</div>`;
                 document.getElementById('q-answer').style.display = 'none';
             } else {
                 // Hide answer (normal questions)
