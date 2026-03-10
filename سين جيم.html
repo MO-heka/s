@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>سين جيم - ساحة المعركة</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -39,7 +39,8 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: hidden;
             position: relative;
         }
 
@@ -729,6 +730,244 @@
             to {
                 transform: scale(1.2);
                 text-shadow: 0 0 40px rgba(255, 0, 0, 1);
+            }
+        }
+
+        /* ===================================================
+           MOBILE RESPONSIVE - شاشة اللعبة
+        =================================================== */
+        @media (max-width: 900px) {
+
+            /* تعطيل الأنيميشن والبلور على الموبايل لتحسين الأداء */
+            body {
+                overflow-y: auto;
+                animation: none;
+                background: #0f172a;
+            }
+
+            .header,
+            .footer,
+            .category-column,
+            .cat-name,
+            .q-timer-container,
+            .q-box {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            body::before,
+            body::after {
+                display: none;
+            }
+
+            /* HEADER */
+            .header {
+                padding: 10px 12px;
+                gap: 6px;
+            }
+
+            .header-title {
+                font-size: 1.4rem;
+            }
+
+            .turn-indicator {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+
+            .btn-exit {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+            }
+
+            /* BOARD - تحويل من صفوف أفقية لعمود */
+            .board-container {
+                padding: 10px 8px;
+                overflow-y: auto;
+                align-items: flex-start;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .category-column {
+                padding: 10px 8px;
+                border-radius: 14px;
+                flex-direction: column;
+            }
+
+            .category-center {
+                width: 100%;
+                margin: 8px 0;
+            }
+
+            .cat-img {
+                height: 90px;
+                border-radius: 8px;
+            }
+
+            .cat-name {
+                font-size: 0.8rem;
+                padding: 5px 8px;
+                margin-top: 6px;
+            }
+
+            .points-col {
+                flex-direction: row;
+                gap: 6px;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .point-btn {
+                width: auto;
+                flex: 1;
+                height: 40px;
+                font-size: 1rem;
+                border-radius: 20px;
+            }
+
+            /* FOOTER */
+            .footer {
+                padding: 10px 8px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .team-panel {
+                padding: 8px 12px;
+                gap: 10px;
+                border-radius: 16px;
+                width: 100%;
+                box-sizing: border-box;
+                justify-content: center;
+            }
+
+            .team-panel.rhs {
+                flex-direction: row;
+            }
+
+            .score-box {
+                flex: 1;
+            }
+
+            .score-name {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+                min-width: 70px;
+            }
+
+            .score-value {
+                font-size: 1.4rem;
+                padding: 6px 16px;
+                min-width: 50px;
+            }
+
+            .score-adjust button {
+                width: 22px;
+                height: 22px;
+                font-size: 0.75rem;
+            }
+
+            .lifeline-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            /* QUESTION SCREEN */
+            .q-header {
+                font-size: 1.4rem;
+                padding: 15px 20px;
+            }
+
+            .q-timer-container {
+                top: 60px;
+                padding: 10px 20px;
+                gap: 12px;
+            }
+
+            .q-timer {
+                font-size: 2.8rem;
+                min-width: 70px;
+            }
+
+            .timer-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .q-box {
+                font-size: 5.5vw;
+                padding: 25px 20px;
+                margin-top: 140px;
+                max-width: 95%;
+                min-height: 150px;
+                border-radius: 20px;
+            }
+
+            .emoji-flag {
+                font-size: 18vw;
+            }
+
+            .q-answer-box {
+                font-size: 5vw;
+                padding: 18px 25px;
+                max-width: 95%;
+                border-radius: 14px;
+                margin-top: 20px;
+            }
+
+            .q-actions {
+                margin-top: 25px;
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .action-btn {
+                padding: 12px 24px;
+                font-size: 1rem;
+                border-radius: 12px;
+                letter-spacing: 0;
+            }
+
+            .award-btns {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .categories-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 7px;
+            }
+
+            .cat-img {
+                height: 75px;
+            }
+
+            .cat-name {
+                font-size: 0.72rem;
+            }
+
+            .point-btn {
+                height: 34px;
+                font-size: 0.85rem;
+            }
+
+            .header-title {
+                font-size: 1.1rem;
+            }
+
+            .turn-indicator {
+                font-size: 0.75rem;
+                padding: 5px 10px;
             }
         }
     </style>
