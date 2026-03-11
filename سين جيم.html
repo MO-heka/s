@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
@@ -760,6 +760,14 @@
                 display: none;
             }
 
+            .emoji-flag {
+                filter: none !important; 
+            }
+
+            .q-box, .q-timer-container, .q-answer-box, .category-column {
+                box-shadow: none !important;
+            }
+
             /* HEADER */
             .header {
                 padding: 10px 12px;
@@ -1174,7 +1182,8 @@
             'كرة قدم عالمية': { name: 'كرة قدم عالمية', img: 'كرة قدم عالمية.jpg' },
             'مسيرة اللاعب': { name: 'مسيرة اللاعب', img: 'مسيرة اللاعب.jpg' },
             'خمن اللاعب': { name: 'خمن اللاعب', img: 'خمن اللاعب.jpg' },
-            'رتب الحروف': { name: 'رتب الحروف', img: 'حروف.jpg' }
+            'رتب الحروف': { name: 'رتب الحروف', img: 'حروف.jpg' },
+            'اسئلة دينية': { name: 'أسئلة دينية', img: 'اسئلة دينية.jpg' }
         };
 
         // Inject JS files to load questions
@@ -1352,10 +1361,12 @@
                 document.getElementById('q-text').innerHTML = qData.question;
             }
             document.getElementById('q-answer').textContent = qData.answer;
-            // Parse emojis into standard SVG images
+            // Parse emojis into standard SVG images asynchronously to prevent UI stutter
             if (window.twemoji) {
-                twemoji.parse(document.getElementById('q-text'));
-                twemoji.parse(document.getElementById('q-answer'));
+                setTimeout(() => {
+                    twemoji.parse(document.getElementById('q-text'));
+                    twemoji.parse(document.getElementById('q-answer'));
+                }, 50);
             }
 
             // ============================================================
